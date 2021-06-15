@@ -54,17 +54,23 @@ function onClickImage(event) {
   }
 
   refs.lightbox.classList.add("is-open");
-  refs.ightboxImage.src = event.target.dataset.source;
-  refs.ightboxImage.alt = event.target.alt;
+  lightboxImage(event.target.dataset.source, event.target.alt);
+}
+
+function lightboxImage(src = "", alt = "") {
+  refs.ightboxImage.src = src;
+  refs.ightboxImage.alt = alt;
 }
 
 function removeClass() {
   refs.lightbox.classList.remove("is-open");
-  refs.ightboxImage.src = "";
-  refs.ightboxImage.alt = "";
+  lightboxImage();
 }
+
 function onPress(event) {
-  if (event.keyCode === 27) {
+  const buttonKeybordEscNum = 27;
+
+  if (event.keyCode === buttonKeybordEscNum) {
     removeClass();
   }
 }
