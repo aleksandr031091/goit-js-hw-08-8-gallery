@@ -24,7 +24,6 @@ refs.gallery.innerHTML = renderMarkup;
 refs.gallery.addEventListener("click", onClickImage);
 refs.btnClose.addEventListener("click", removeClass);
 refs.lightboxOverlay.addEventListener("click", removeClass);
-window.addEventListener("keyup", onPress);
 
 function renderMarcupGallery(galleryImages) {
   return galleryImages
@@ -52,6 +51,7 @@ function onClickImage(event) {
   if (!event.target.classList.contains("gallery__image")) {
     return;
   }
+  window.addEventListener("keyup", onPress);
 
   refs.lightbox.classList.add("is-open");
   lightboxImage(event.target.dataset.source, event.target.alt);
@@ -63,6 +63,7 @@ function lightboxImage(src = "", alt = "") {
 }
 
 function removeClass() {
+  window.removeEventListener("keyup", onPress);
   refs.lightbox.classList.remove("is-open");
   lightboxImage();
 }
